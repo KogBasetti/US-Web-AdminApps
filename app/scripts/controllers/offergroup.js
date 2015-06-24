@@ -102,9 +102,10 @@ app.controller('OfferGroupCtrl', function ($scope) {
             $scope.storeIdExpanded = offergroupId;
             $scope.dayDataCollapse[index] = true;
             //$(".listSerialicon").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
-            //$("#icon_"+offergroupId).removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
+            $("#icon_"+offergroupId).removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
         } 
         else if ($scope.tableRowExpanded === true) {
+            $("#icon_"+offergroupId).removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
             if ($scope.tableRowIndexExpandedCurr === index && $scope.storeIdExpanded === offergroupId) {
                 $scope.tableRowExpanded = false;
                 $scope.tableRowIndexExpandedCurr = "";
