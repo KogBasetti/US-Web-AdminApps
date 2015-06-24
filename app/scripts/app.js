@@ -59,9 +59,9 @@ var app = angular.module('sandvikusaAdminAppsApp', [
         controller: 'loginCtrl',
         controllerAs:'vm'
       })
-    .when('/testpage', {
-        templateUrl: 'views/testpage.html',
-        controller: 'testpageCtrl'
+    .when('/testkendo', {
+        templateUrl: 'views/testkendo.html',
+        controller: 'testkendoCtrl'
       })
     .otherwise({
         redirectTo: '/pages'
@@ -90,7 +90,7 @@ app.run(function($rootScope, $location, $cookieStore, $http) {
                 $location.path('/login');
             }
             
-            if($location.path() === '/pages'){
+            if($location.path() === '/pages' || $location.path() === '/testkendo'){
                 $rootScope.opendiv = 'reports';
             }
             else if($location.path() === '/orderforms' || $location.path() === '/promolist' || $location.path() === '/offergroup' || $location.path() === '/promocode' || $location.path() === '/insertorderforms'){
@@ -101,6 +101,14 @@ app.run(function($rootScope, $location, $cookieStore, $http) {
             }
             $rootScope.selectdiv = function(selval) {  
                    $rootScope.opendiv = selval;
+            }
+            
+            //For Active menu
+            $rootScope.getClass = function(selmenu){
+                var res='';
+                if($location.path() === selmenu) 
+                    res = 'active';
+                return res;
             }
             
         });

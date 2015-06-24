@@ -57,12 +57,13 @@
         	<div class="col-md-12">
             	<nav>
                     <ul ng-if="opendiv == 'reports'">
-                        <li class="active" ng-class="{active: $location.path() == '/pages'}"><a ng-href="#/pages">Page List</a></li>
+                        <li class="{{getClass('/pages')}}" ng-class="{active: $location.path() == '/pages'}"><a ng-href="#/pages">Page List</a></li>
+                        <li class="{{getClass('/testkendo')}}" ng-class="{active: $location.path() == '/testkendo'}"><a ng-href="#/testkendo">Test Kendo</a></li>
                     </ul>
                     <ul ng-if="opendiv == 'offersetup'">
-                        <li class="active" ng-class="{active: $location.path() == '/orderforms'}"><a ng-href="#/orderforms">Order Forms</a></li>
-                        <li ng-class="{active: $location.path() == '/promolist'}"><a ng-href="#/promolist">Promo Mapping</a></li>
-                        <li ng-class="{active: $location.path() == '/offergroup'}"><a ng-href="#/offergroup">Offer Group</a></li>  
+                        <li class="{{getClass('/orderforms')}}" ng-class="{active: $location.path() == '/orderforms'}"><a ng-href="#/orderforms">Order Forms</a></li>
+                        <li class="{{getClass('/promolist')}}" ng-class="{active: $location.path() == '/promolist'}"><a ng-href="#/promolist">Promo Mapping</a></li>
+                        <li class="{{getClass('/offergroup')}}" ng-class="{active: $location.path() == '/offergroup'}"><a ng-href="#/offergroup">Offer Group</a></li>  
                     </ul>
                 </nav>
             </div>
@@ -88,7 +89,9 @@
     <!--Modal Text-->
     <script type="text/ng-template" id="myModalContent.html">
             <div class="modal-header"><h3 class="modal-title">Error</h3></div>
-            <div class="modal-body" ng-bind-html="msg"></div>
+            <div class="modal-body" ng-bind-html="msg">
+            </div>
+            
             <div class="modal-footer">
                 <button class="btn btn-primary" ng-click="ok()">OK</button>
             </div>
@@ -128,7 +131,7 @@
     <script src="scripts/controllers/offergroup.js"></script>
     <script src="scripts/controllers/insertcampaigns.js"></script>
     <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/testpage.js"></script>
+    <script src="scripts/controllers/testkendo.js"></script>
     
     <script src="scripts/app-services/authentication.service.js"></script>
     <script src="scripts/app-services/flash.service.js"></script>
