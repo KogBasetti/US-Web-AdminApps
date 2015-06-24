@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name sandvikusaAdminAppsApp.controller:OfferPageCtrl
- * @description
- * # OfferPageCtrl
- * Controller of the sandvikusaAdminAppsApp
- */
 var app = angular.module('sandvikusaAdminAppsApp');
 
 app.config(function ($httpProvider) {
@@ -14,7 +7,7 @@ app.config(function ($httpProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
-app.controller('OfferGroupCtrl', function ($scope, $http) {
+/*app.controller('OfferGroupCtrl', function ($scope, $http) {
         
         $scope.allProjects = [];
         $scope.results = [];
@@ -75,4 +68,155 @@ app.controller('OfferGroupCtrl', function ($scope, $http) {
             });
          }
         // Onclick get campaign data end
-  });
+  });*/
+
+
+
+app.controller('OfferGroupCtrl', function ($scope) {
+    
+    $scope.tableRowExpanded = false;
+    $scope.tableRowIndexExpandedCurr = "";
+    $scope.tableRowIndexExpandedPrev = "";
+    $scope.storeIdExpanded = "";
+    
+    $scope.dayDataCollapseFn = function (index) {
+        $scope.dayDataCollapse = [];
+        $scope.campaignDataCollapse = [];
+        for (var i = 0; i < $scope.offergrouplist[index].Offers.length; i += 1) {
+            $scope.dayDataCollapse.push(false);
+        }
+        for (var i = 0; i < $scope.offergrouplist[index].campaigns.length; i += 1) {
+            $scope.campaignDataCollapse.push(false);
+        }
+    };
+    
+    $scope.selectTableRow = function (index, offergroupId) {
+        if (typeof $scope.dayDataCollapse === 'undefined') {
+            $scope.dayDataCollapseFn(index);
+        }
+
+        if ($scope.tableRowExpanded === false && $scope.tableRowIndexExpandedCurr === "" && $scope.storeIdExpanded === "") {
+            $scope.tableRowIndexExpandedPrev = "";
+            $scope.tableRowExpanded = true;
+            $scope.tableRowIndexExpandedCurr = index;
+            $scope.storeIdExpanded = offergroupId;
+            $scope.dayDataCollapse[index] = true;
+            //$(".listSerialicon").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
+            //$("#icon_"+offergroupId).removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
+        } 
+        else if ($scope.tableRowExpanded === true) {
+            if ($scope.tableRowIndexExpandedCurr === index && $scope.storeIdExpanded === offergroupId) {
+                $scope.tableRowExpanded = false;
+                $scope.tableRowIndexExpandedCurr = "";
+                $scope.storeIdExpanded = "";
+                $scope.dayDataCollapse[index] = false;
+            } else {
+                $scope.tableRowIndexExpandedPrev = $scope.tableRowIndexExpandedCurr;
+                $scope.tableRowIndexExpandedCurr = index;
+                $scope.storeIdExpanded = offergroupId;
+                $scope.dayDataCollapse[$scope.tableRowIndexExpandedPrev] = false;
+                $scope.dayDataCollapse[$scope.tableRowIndexExpandedCurr] = true;
+            }
+        }
+
+    };
+
+    $scope.offergrouplist = [
+            {
+            "offergroupId": "12151",
+            "offergroupDesc": "Elmo Adventure",
+            "Offers": [
+                    {
+                    "offerId": "19631624",
+                    "offerDesc": "Elmo",
+                    "offerDescCode": "B",
+                    "displayOrder": 3,
+                    "itemSelected": "Y",
+                    "isBonusBundled": "",
+                    "displayInCart": "Y",
+                    "isBonusOffer": "N",
+                    "isUser": "Y",
+                    "specialText": ""
+                    },
+                    {
+                    "offerId": "19631625",
+                    "offerDesc": "Elmo",
+                    "offerDescCode": "B",
+                    "displayOrder": 3,
+                    "itemSelected": "Y",
+                    "isBonusBundled": "",
+                    "displayInCart": "Y",
+                    "isBonusOffer": "N",
+                    "isUser": "Y",
+                    "specialText": ""
+                    }    
+            ],
+            "campaigns": [
+                    {
+                    "campaignId": 12303,
+                    "campaignDesc": "Elmo adventure"
+                    },
+                    {
+                    "campaignId": 12304,
+                    "campaignDesc": "Elmo adventure"
+                    }
+            ]
+            },
+        
+            {
+            "offergroupId": "12152",
+            "offergroupDesc": "Elmo Adventure",
+            "Offers": [
+                    {
+                    "offerId": "19631621",
+                    "offerDesc": "Elmo",
+                    "offerDescCode": "B",
+                    "displayOrder": 3,
+                    "itemSelected": "Y",
+                    "isBonusBundled": "",
+                    "displayInCart": "Y",
+                    "isBonusOffer": "N",
+                    "isUser": "Y",
+                    "specialText": ""
+                    },
+                    {
+                    "offerId": "19631621",
+                    "offerDesc": "Elmo",
+                    "offerDescCode": "B",
+                    "displayOrder": 3,
+                    "itemSelected": "Y",
+                    "isBonusBundled": "",
+                    "displayInCart": "Y",
+                    "isBonusOffer": "N",
+                    "isUser": "Y",
+                    "specialText": ""
+                    }    
+            ],
+            "campaigns": [
+                    {
+                    "campaignId": 12301,
+                    "campaignDesc": "Elmo adventure"
+                    },
+                    {
+                    "campaignId": 12302,
+                    "campaignDesc": "Elmo adventure"
+                    }
+            ]
+            }
+            
+            
+            ];
+        
+});
+
+app.directive('showtab',
+    function () {
+        return {
+            link: function (scope, element, attrs) {
+                element.click(function(e) {
+                    e.preventDefault();
+                    $(element).tab('show');
+                });
+            }
+        };
+    });

@@ -209,3 +209,48 @@
 
 /*link faded*/
 .linkFaded{ content: ""; width: 180px; height: 21px; margin-bottom: -6px; margin-left: -180px; display: inline-block; position: relative; background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, #fff 75%); background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(75%, #fff)); background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, #fff 75%); background: -o-linear-gradient(left, rgba(255,255,255,0) 0%, #fff 75%); background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%, #fff 75%); background: linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 75%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); }
+
+/* === 24/06/2015 === */
+.levelOne {
+    background-color: #3E7AAE;
+    color: #fff;
+    border:none;
+}
+.levelTwo {
+    background-color: #D1D4D7;
+    color: #000;
+}
+
+
+tr td:first-child,
+tr th:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+tr td:last-child,
+tr th:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.clickableRow {
+    cursor: pointer;
+}
+/* === 24/06/2015 === */
+
+
+.levelOne tr td:first-child,
+.levelOne tr th:first-child{border-radius: 6px 0 0 0;}
+.levelOne tr td:last-child,
+.levelOne tr th:last-child{border-radius: 0 6px 0 0;}
+
+.levelTwo tr td:first-child,
+.levelTwo tr th:first-child{border-radius:0;}
+.levelTwo tr td:last-child,
+.levelTwo tr th:last-child{border-radius: 0;}
+
+#offers table, #campaigns table{margin-top: 1px;}
+.levelTwo tr th{color: #333; font-weight: normal;}
+
+.tabTitle li a{color:#333;}
+.tabTitle li a:hover, .tabTitle li a:focus, .tabTitle > li.active > a, .tabTitle > li.active > a:hover, .tabTitle > li.active > a:focus{color:#f00;}
