@@ -1,0 +1,108 @@
+<div class="col-md-10 col-md-offset-1 formBox">
+    <form>
+    <div class="form-group">
+        <input type="text" ng-model="models.searchText" class="form-control" placeholder="Search here" style="width:25%;">
+    </div>
+    </form>
+</div>
+
+<div class="col-md-12 bodyContentArea">
+    <style>
+    .offerGroup thead tr:first-child {
+    background-color: #3E7AAE;
+    color: #fff;
+    border:none;
+    }
+        offerGroup thead tr:last-child {
+    background-color: #f9f9f9;
+    color: #fff;
+    border:none;
+    }
+    .offerGroup tr:first-child td:first-child,
+    .offerGroup tr:first-child th:first-child{border-radius: 6px 0 0 0;}
+    .offerGroup tr:first-child td:last-child,
+    .offerGroup tr:first-child th:last-child{border-radius: 0 6px 0 0;}
+    
+     .offerGroup tbody > tr {
+      border-bottom: 1px solid #ddd;
+    }
+        
+    </style>
+    
+  <!-- ========== Usage ========== -->
+  <ad-table-lite table-name="offergrouplist"
+                 enable-column-search="true"
+                 column-definition="offerTableColumnDefinition"
+                 local-data-source="models.offergrouplist"
+                 page-sizes="[5,10]"
+                 page-loader="methods.pageLoader"
+                 pagination-btn-group-classes="pagination pagination-sm"
+                 table-classes="table table-hover table-condensed table-striped table-bordered offerGroup"
+                 items-not-found-message="Records Not Found"
+                 snug-sort-icons="true"
+                 search-text="models.searchText"
+                 row-expand-template="src/tablelite/docs/innertable.html"
+                 >
+   </ad-table-lite>
+  <!-- ========== Usage ========== -->
+    
+    <script type="text/ng-template" id="src/tablelite/docs/innertable.html">
+        <div>
+          <ul class="nav nav-tabs tabTitle" role="tablist">
+                <li role="presentation" class="active"><a showtab="" href="#offers" role="tab" data-toggle="tab">Offers</a></li>
+                <li role="presentation"><a showtab="" href="#campaigns" role="tab" data-toggle="tab">Campaigns</a></li>
+          </ul>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="offers">
+              <table class="table table-hover table-condensed">
+                <thead class="levelTwo">
+                    <tr>
+                        <th>#</th>
+                        <th>Offer Id</th>
+                        <th>Offer Desc</th>
+                        <th>Offer Desc Code</th>
+                        <th>Display Order</th>
+                        <th>Is Item Selected</th>
+                        <th>Is Bonus Bundled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="offerData in item.Offers | filter : searchText">
+                        <td>{{$index+1}}</td>
+                        <td>{{offerData.offerId}}</td>
+                        <td>{{offerData.offerDesc}}</td>
+                        <td>{{offerData.offerDescCode}}</td>
+                        <td>{{offerData.displayOrder}}</td>
+                        <td>
+                            <span ng-if="offerData.itemSelected=='Y'">Yes</span>
+                            <span ng-if="offerData.itemSelected=='N'">No</span>
+                        </td>
+                        <td>{{offerData.isBonusBundled}}</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="campaigns">
+              <table class="table table-hover table-condensed">
+                <thead class="levelTwo">
+                    <tr>
+                        <th>#</th>
+                        <th>Campaign Id</th>
+                        <th>Campaign Desc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="campaignData in item.campaigns">
+                        <td>{{$index+1}}</td>
+                        <td>{{campaignData.campaignId}}</td>
+                        <td>{{campaignData.campaignDesc}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+         </div>
+        </div>
+    </script>
+    
+</div>

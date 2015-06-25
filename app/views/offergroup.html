@@ -1,8 +1,8 @@
 <div class="col-md-12 bodyContentArea">
     <div class="table-responsive">
-     
+
         <!-- START TABLE -->
-        
+            <input type="search" ng-model="campaignsearch" placeholder="Search...">
              <table class="table table-hover table-condensed table-striped">
                 <thead class="levelOne">
                     <tr>
@@ -11,22 +11,23 @@
                         <th>Offer Group Desc</th>
                     </tr>
                 </thead>
-                <tbody data-ng-repeat="offer in offergrouplist" data-ng-switch on="dayDataCollapse[$index]">
+                <tbody data-ng-repeat="offer in offergrouplist  | filter:campaignsearch" data-ng-switch on="dayDataCollapse[$index]">
                     <tr class="clickableRow">
                         <td data-ng-click="selectTableRow($index, offer.offergroupId)" class="listSerial">
-                            <i id="icon_{{offer.offergroupId}}" ng-class="iconClasses.expand" class="listSerialicon ng-scope glyphicon glyphicon-plus-sign"></i>                          
+
+                            <i id="icon_{{offer.offergroupId}}" ng-class="iconClasses.expand" class="listSerialicon ng-scope glyphicon glyphicon-plus-sign"></i>
+
                         </td>
                         <td class="listOffergroupId">{{offer.offergroupId}}</td>
                         <td>{{offer.offergroupDesc}}</td>
                     </tr>
                     <tr data-ng-switch-when="true">
-                        <td colspan="3">
+                        <td colspan="4">
                             <ul class="nav nav-tabs tabTitle" role="tablist">
-                            <li role="presentation" class="active"><a showtab="" href="#offers" role="tab" data-toggle="tab">Offers</a></li>
-                            <li role="presentation"><a showtab="" href="#campaigns" role="tab" data-toggle="tab">Campaigns</a></li>
-                          </ul>
+                                <li role="presentation" class="active"><a showtab="" href="#offers" role="tab" data-toggle="tab">Offers</a></li>
+                                <li role="presentation"><a showtab="" href="#campaigns" role="tab" data-toggle="tab">Campaigns</a></li>
+                            </ul>
 
-                          <!-- Tab panes -->
                           <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="offers">
                               <table class="table table-hover table-condensed">
@@ -62,15 +63,21 @@
                                 <thead class="levelTwo">
                                     <tr>
                                         <th>#</th>
+                                        <th>Project</th>
                                         <th>Campaign Id</th>
                                         <th>Campaign Desc</th>
+                                        <th>Campaign Credit Rule</th>
+                                        <th>Campaign Short Notes</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr data-ng-repeat="campaignData in offergrouplist[$index].campaigns">
                                         <td>{{$index+1}}</td>
+                                        <td class="listOffergroupId">{{campaignData.Project}}</td>
                                         <td>{{campaignData.campaignId}}</td>
                                         <td>{{campaignData.campaignDesc}}</td>
+                                        <td>{{campaign.CampaignCreditRule}}</td>
+                                        <td>{{campaign.CampaignShortNotes}}</td>
                                     </tr>
                                 </tbody>
 </table>

@@ -1,86 +1,65 @@
-<div class="col-md-10 col-md-offset-1 formBox">
-        <form class="form-inline">
-            <div class="form-group">
-                <input type="text" ng-model="searchCampaignShortNotes" class="form-control" placeholder="Page Description">
-            </div>
-            <div class="form-group">    
-                <select ng-model="searchProject" class="form-control">
-                      <option value="">Project</option>
-                      <option ng-repeat="project in allProjects" value="{{project.ProjectCode}}">
-                          {{project.ProjectName}}
-                      </option>
-				</select>
-            </div>
-            <div class="form-group">
-                <select ng-model="searchCreditRule" class="form-control">
-                      <option value="">Credit Rule</option>
-                      <option ng-repeat="credit in allCreditrules" value="{{credit.RuleId}}">
-                          {{credit.RuleId}}
-                      </option>
-				</select>
-            </div>
-            <div class="form-group">
-                <select ng-model="searchPageType" class="form-control">
-                    <option value="">Page Type</option>
-                    <option value="N">Horizontal</option>
-                    <option value="Y">Maxchoice</option>
-				</select>
-            </div>
-            <div class="form-group">
-                <select ng-model="searchBEPrice" class="form-control">
-                    <option value="">BE Price</option>
-                    <option value="299">299</option>
-                    <option value="399">399</option>
-                    <option value="499">499</option>
-                    <option value="599">599</option>
-				</select>
-            </div>
-        </form>
-</div>
 
-<div class="clear"></div> 
-<div class="col-md-12"><div ng-show="loading" class="loading"><img src="../images/loading.gif">LOADING...</div></div>
-<div class="clear"></div>
-    
-				
+
 <div class="col-md-12 bodyContentArea">
-    <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
+    <table>
+        <table class="table table-hover table-condensed table-striped">
+                <thead class="levelOne">
                     <tr>
                         <th>#</th>
+                        <th>Project</th>
                         <th>Campaign Id</th>
-						<th>Page Id</th>
-                        <th>Offer Description</th>
-                        <th>Credit Rule</th>
-						<th>Page Name</th>     			
-						<th>Page Desc</th>
-						<th>Short Notes</th>
-						<th>Page Url</th>
-                        <th>Page Type</th>
-                        <th>BE Price</th>
-                        <th style="display:none;">action</th>
+                        <th>Campaign Desc</th>
+                        <th>Campaign Credit Rule</th>
+                        <th>Campaign Short Notes</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr ng-repeat="result in results | filter: { CampaignShortNotes: searchCampaignShortNotes,Project: searchProject, CampaignCreditRule: searchCreditRule, IsClubShopOffer: searchPageType }">
-                        <th scope="row">{{$index+1}}</th>
-                        <td>{{result.CampaignId}}</td>
-						<td>{{result.PageId}}</td>
-                        <td>{{result.CampaignShortNotes | limitTo:20}}</td>
-                        <td>{{result.CampaignCreditRule}}</td>
-						<td>{{result.PageName | limitTo:20}}</td>
-						<td>{{result.PageDesc | limitTo:20}}</td> 
-						<td>{{result.PageShortNotes | limitTo:20}}</td>
-                        <td>{{result.PageUrl | limitTo:20}}</td>
-                        <td><span ng-if="result.IsClubShopOffer=='N'">Horizontal</span>
-							<span ng-if="result.IsClubShopOffer=='Y'">Maxchoice</span>
+                <tbody data-ng-repeat="campaign in allcampaignlist" data-ng-switch on="dayDataCollapse[$index]">
+                    <tr class="clickableRow">
+                        <td data-ng-click="selectTableRow($index, campaign.CampaignId)" class="listSerial">
+                            <i id="icon_{{campaign.CampaignId}}" ng-class="iconClasses.expand" class="listSerialicon ng-scope glyphicon glyphicon-plus-sign"></i>
                         </td>
-                        <td>&nbsp;</td>
-						<td style="display:none;">{{result.Project}}</td>
+                        <td class="listOffergroupId">{{campaign.Project}}</td>
+                        <td class="listOffergroupId">{{campaign.CampaignId}}</td>
+                        <td>{{campaign.CampaingDesc}}</td>
+                        <td>{{campaign.CampaignCreditRule}}</td>
+                        <td>{{campaign.CampaignShortNotes}}</td>
+                    </tr>
+                    <tr data-ng-switch-when="true">
+                        <td colspan="6">
+                          <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="offers">
+                              <table class="table table-hover table-condensed">
+                                <thead class="levelTwo">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Page Id</th>
+                                        <th>Page Name</th>
+                                        <th>Page Desc</th>
+                                        <th>Page Short Notes</th>
+                                        <th>PageUrl</th>
+                                        <th>Page Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="pageData in allcampaignlist[$index].allpagelist">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{pageData.PageId}}</td>
+                                        <td>{{pageData.PageName}}</td>
+                                        <td>{{pageData.PageDesc}}</td>
+                                        <td>{{pageData.PageShortNotes}}</td>
+                                        <td>{{pageData.PageUrl}}</td>
+                                        <td><span ng-if="pageData.IsClubShopOffer=='N'">Horizontal</span>
+                                            <span ng-if="pageData.IsClubShopOffer=='Y'">Maxchoice</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            </div>
+                          </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+    </table>
 </div>
 

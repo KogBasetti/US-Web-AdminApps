@@ -93,11 +93,17 @@ app.controller('OfferGroupCtrl', function ($scope) {
             "campaigns": [
                     {
                     "campaignId": 12303,
-                    "campaignDesc": "Elmo adventure"
+                    "campaignDesc": "Elmo adventure",
+                    "CampaignCreditRule":"SCC",
+                    "CampaignShortNotes":"short_notes",
+                    "Project":"HOU"
                     },
                     {
                     "campaignId": 12304,
-                    "campaignDesc": "Elmo adventure"
+                    "campaignDesc": "Elmo adventure",
+                    "CampaignCreditRule":"SCC",
+                    "CampaignShortNotes":"short_notes",
+                    "Project":"HOU"
                     }
             ]
             },
@@ -134,28 +140,21 @@ app.controller('OfferGroupCtrl', function ($scope) {
             "campaigns": [
                     {
                     "campaignId": 12301,
-                    "campaignDesc": "Elmo adventure"
+                    "campaignDesc": "Disney adventure",
+                    "CampaignCreditRule":"SCC",
+                    "CampaignShortNotes":"short_notes",
+                    "Project":"HOU"
                     },
                     {
                     "campaignId": 12302,
-                    "campaignDesc": "Elmo adventure"
+                    "campaignDesc": "Disney adventure",
+                    "CampaignCreditRule":"SCC",
+                    "CampaignShortNotes":"short_notes",
+                    "Project":"HOU"
                     }
             ]
             }
             
-            
             ];
         
 });
-
-app.directive('showtab',
-    function () {
-        return {
-            link: function (scope, element, attrs) {
-                element.click(function(e) {
-                    e.preventDefault();
-                    $(element).tab('show');
-                });
-            }
-        };
-    });

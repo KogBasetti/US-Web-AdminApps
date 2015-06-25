@@ -17,7 +17,8 @@ var app = angular.module('sandvikusaAdminAppsApp', [
                         'ngTouch',
                         'ngTable',
                         'ui.bootstrap',
-                        'kendo.directives'
+                        'kendo.directives',
+                        'adaptv.adaptStrap'
                       ]);
 
   app.config(function ($routeProvider) {
@@ -62,6 +63,10 @@ var app = angular.module('sandvikusaAdminAppsApp', [
     .when('/testkendo', {
         templateUrl: 'views/testkendo.html',
         controller: 'testkendoCtrl'
+      })
+     .when('/testofferpage', {
+        templateUrl: 'views/testofferpage.html',
+        controller: 'testofferpageCtrl'
       })
     .otherwise({
         redirectTo: '/pages'
@@ -133,3 +138,15 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, msg) {
                 $modalInstance.close();
     };
 });
+
+app.directive('showtab',
+    function () {
+        return {
+            link: function (scope, element, attrs) {
+                element.click(function(e) {
+                    e.preventDefault();
+                    $(element).tab('show');
+                });
+            }
+        };
+    });
