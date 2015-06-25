@@ -7,71 +7,6 @@ app.config(function ($httpProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
-/*app.controller('OfferGroupCtrl', function ($scope, $http) {
-        
-        $scope.allProjects = [];
-        $scope.results = [];
-        $scope.loading = true;
-        $scope.oneAtATime = true;
-        $scope.curPage = 0;
-        $scope.pageSize = 5;
-        $scope.MaxPage = 0;
-		$scope.curPage_sub = 0;
-        $scope.pageSize_sub = 5;
-        $scope.MaxPage_sub = 0;
-        $scope.Run = 1;
-    
-        //Get All Project
-         $http.jsonp("http://beta.iservices.earlymoments.com/getprojectlist?token=741889E3-4565-40A1-982A-F15F7A923D72&format=json&callback=JSON_CALLBACK")
-         .success(function(data) {
-            $scope.allProjects = data.response;
-         }); //end
-    
-
-        //Get All data 
-        $http.jsonp("http://beta.iservices.earlymoments.com/getsamsoffergrouplist?token=741889E3-4565-40A1-982A-F15F7A923D72&ProjectCode=BRU&format=json&callback=JSON_CALLBACK")
-        .success(function(data) {
-            $scope.results = data.response ;  
-            $scope.numberOfPages=function(){
-                return Math.ceil($scope.results.length / $scope.pageSize);
-            }
-            $scope.MaxPage=$scope.numberOfPages();
-            $scope.loading = false;                 
-        }).error(function(){
-            alert("Error");
-        }); //end
-       
-        
-    
-         $scope.getDropdownVal = function(selid) {   
-             $http.jsonp("http://beta.iservices.earlymoments.com/getsamsoffergrouplist?token=741889E3-4565-40A1-982A-F15F7A923D72&ProjectCode="+selid+"&format=json&callback=JSON_CALLBACK")
-            .success(function(data) {
-                $scope.results = data.response ;  
-                $scope.numberOfPages=function(){
-                    return Math.ceil($scope.results.length / $scope.pageSize);
-                }
-                $scope.MaxPage=$scope.numberOfPages();
-                $scope.loading = false;                 
-            });
-         }
-		 
-		  // Onclick get Campaign data start
-        $scope.getCampaignData = function(cid) { 
-            $http.jsonp("http://beta.iservices.earlymoments.com/getcampaignlist?token=741889E3-4565-40A1-982A-F15F7A923D72&CampaignId="+ cid+"&format=json&callback=JSON_CALLBACK")
-            .success(function(data) {
-                $scope.allCampaigns = data.response;
-				console.log($scope.allCampaigns);
-                $scope.numberOfPages_sub=function(){
-                    return Math.ceil($scope.allCampaigns.length / $scope.pageSize_sub);
-                }
-                $scope.MaxPage_sub=$scope.numberOfPages_sub();
-            });
-         }
-        // Onclick get campaign data end
-  });*/
-
-
-
 app.controller('OfferGroupCtrl', function ($scope) {
     
     $scope.tableRowExpanded = false;
@@ -105,18 +40,21 @@ app.controller('OfferGroupCtrl', function ($scope) {
             $("#icon_"+offergroupId).removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
         } 
         else if ($scope.tableRowExpanded === true) {
-            $("#icon_"+offergroupId).removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
+            
             if ($scope.tableRowIndexExpandedCurr === index && $scope.storeIdExpanded === offergroupId) {
                 $scope.tableRowExpanded = false;
                 $scope.tableRowIndexExpandedCurr = "";
                 $scope.storeIdExpanded = "";
                 $scope.dayDataCollapse[index] = false;
+                $("#icon_"+offergroupId).removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
             } else {
                 $scope.tableRowIndexExpandedPrev = $scope.tableRowIndexExpandedCurr;
                 $scope.tableRowIndexExpandedCurr = index;
                 $scope.storeIdExpanded = offergroupId;
                 $scope.dayDataCollapse[$scope.tableRowIndexExpandedPrev] = false;
                 $scope.dayDataCollapse[$scope.tableRowIndexExpandedCurr] = true;
+                $(".listSerialicon").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
+                $("#icon_"+offergroupId).removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
             }
         }
 

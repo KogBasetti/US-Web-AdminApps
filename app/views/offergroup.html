@@ -14,7 +14,7 @@
                 <tbody data-ng-repeat="offer in offergrouplist" data-ng-switch on="dayDataCollapse[$index]">
                     <tr class="clickableRow">
                         <td data-ng-click="selectTableRow($index, offer.offergroupId)" class="listSerial">
-                            <i id="icon_{{offer.offergroupId}}" ng-class="iconClasses.expand" class="ng-scope glyphicon glyphicon-plus-sign"></i>                          
+                            <i id="icon_{{offer.offergroupId}}" ng-class="iconClasses.expand" class="listSerialicon ng-scope glyphicon glyphicon-plus-sign"></i>                          
                         </td>
                         <td class="listOffergroupId">{{offer.offergroupId}}</td>
                         <td>{{offer.offergroupDesc}}</td>
