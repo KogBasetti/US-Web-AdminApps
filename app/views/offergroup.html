@@ -1,12 +1,12 @@
 <div class="col-md-12 bodyContentArea">
-<<<<<<< HEAD
+
     <div class="table-responsive">
 
         <!-- START TABLE -->
             <input type="search" ng-model="campaignsearch" placeholder="Search...">
              <table class="table table-hover table-condensed table-striped">
                 <thead class="levelOne">
-=======
+
     
 <div class="input-group" style="width:20%; padding-bottom:1px;">
     <input type="text" ng-model="models.searchText" class="form-control" placeholder="Search here" >
@@ -33,7 +33,7 @@
   <!-- ========== Usage ========== -->
     
     <script type="text/ng-template" id="src/tablelite/docs/innertable.html">
-        <div>
+        <div style="margin-left:10px;margin-right:10px;">
           <ul class="nav nav-tabs tabTitle" role="tablist">
                 <li role="presentation" class="active"><a showtab="" href="#offers" role="tab" data-toggle="tab">Offers</a></li>
                 <li role="presentation"><a showtab="" href="#campaigns" role="tab" data-toggle="tab">Campaigns</a></li>
@@ -43,7 +43,7 @@
             <div role="tabpanel" class="tab-pane active" id="offers">
               <table class="table table-hover table-condensed">
                 <thead class="levelTwo">
->>>>>>> c4ba2f5fdfcc2794a5209dc0ab5de078826511c6
+
                     <tr>
                         <th>#</th>
                         <th>Offer Id</th>
@@ -53,8 +53,8 @@
                         <th>Is Bonus Bundled</th>
                         <th>Display In Cart</th>
                         <th>Is Base Offer</th>
-                        <th>Is Use</th>
-                        <th>Special Text</th>
+                        <th class="smlTxtBxHead">Is Use</th>
+                        <th class="smlTxtBxHead">Special Text</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -62,23 +62,57 @@
                     <tr data-ng-repeat="offerData in item.Offers">
                         <td>{{$index+1}}</td>
                         <td>{{offerData.offerId}}</td>
-                        <td>{{offerData.offerDescCode}}</td>
-                        <td>{{offerData.displayOrder}}</td>
-                        <td>
-                            <span ng-if="offerData.itemSelected=='Y'">Yes</span>
-                            <span ng-if="offerData.itemSelected=='N'">No</span>
+                        <td class="smlTxtBx">
+                            <span editable-text="offerData.offerDescCode" e-name="offerDescCode" e-form="rowform" e-required>
+                                <span ng-if="offerData.offerDescCode=='B'">Base Offer</span>
+                                <span ng-if="offerData.offerDescCode=='O'">One Shot</span>
+                                <span ng-if="offerData.offerDescCode=='U'">Upsell</span>
+                                <span ng-if="offerData.offerDescCode=='P'">Shipping and handling</span>
+                            </span>
                         </td>
-                        <td>{{offerData.isBonusBundled}}</td>
-                        <td>{{offerData.displayInCart}}</td>
-                        <td>{{offerData.isBaseOffer}}</td>
-                        <td>{{offerData.inUse}}</td>
-                        <td editable-text="offerData.specialText" e-name="specialText" e-form="rowform" e-required>
-                            {{offerData.specialText}}
+                        <td class="smlTxtBx">
+                            <span editable-text="offerData.displayOrder" e-name="displayOrder" e-form="rowform" e-required>
+                            {{offerData.displayOrder}}
+                            </span>
+                        </td>
+                        <td class="smlTxtBx">
+                            <span editable-text="offerData.itemSelected" e-name="itemSelected" e-form="rowform" e-ng-options="s.value as s.text for s in itemstatus">
+                                {{showStatus(offerData)}}
+                            </span>
+                        </td>
+                        <td class="smlTxtBx">
+                            <span editable-text="offerData.isBonusBundled" e-name="isBonusBundled" e-form="rowform" e-required>
+                                <span ng-if="offerData.isBonusBundled=='Y'">Yes</span>
+                                <span ng-if="offerData.isBonusBundled=='N'">No</span>
+                            </span>
+                        </td>
+                        <td class="smlTxtBx">
+                            <span editable-text="offerData.displayInCart" e-name="displayInCart" e-form="rowform" e-required>
+                                <span ng-if="offerData.displayInCart=='Y'">Yes</span>
+                                <span ng-if="offerData.displayInCart=='N'">No</span>
+                            </span>
+                        </td>
+                        <td class="smlTxtBx">
+                            <span editable-text="offerData.isBaseOffer" e-name="isBaseOffer" e-form="rowform" e-required>
+                                <span ng-if="offerData.isBaseOffer=='Y'">Yes</span>
+                                <span ng-if="offerData.isBaseOffer=='N'">No</span>
+                            </span>
+                        </td>
+                        <td class="smlTxtBx">
+                            <span editable-text="offerData.inUse" e-name="inUse" e-form="rowform" e-required>
+                                <span ng-if="offerData.inUse=='Y'">Yes</span>
+                                <span ng-if="offerData.inUse=='N'">No</span>
+                            </span>
+                        </td>
+                        <td class="smlTxtBx">
+                            <span editable-text="offerData.specialText" e-name="specialText" e-form="rowform" e-required>
+                                {{offerData.specialText}}
+                            </span>
                         </td>
                         <td>
                             <form editable-form name="rowform" onbeforesave="saveUser($data, offerData.offerId)" ng-show="rowform.$visible" class="form-buttons form-inline">
-                              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">Save</button>
-                              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">cancel</button>
+                              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-sm">Save</button>
+                              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-sm">cancel</button>
                             </form> 
                             <div class="buttons" ng-show="!rowform.$visible">
                               <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
@@ -103,15 +137,10 @@
                 </thead>
                   <tbody data-ng-repeat="campaignData in item.campaigns | filter : searchText" data-ng-switch on="dayDataCollapse[$index]">
                     <tr class="clickableRow">
-<<<<<<< HEAD
-                        <td data-ng-click="selectTableRow($index, offer.offergroupId)" class="listSerial">
 
-                            <i id="icon_{{offer.offergroupId}}" ng-class="iconClasses.expand" class="listSerialicon ng-scope glyphicon glyphicon-plus-sign"></i>
-
-=======
                         <td data-ng-click="selectTableRow($index, campaignData.campaignId)" class="listSerial">
                             <i id="icon_{{campaignData.campaignId}}" ng-class="iconClasses.expand" class="listSerialicon ng-scope glyphicon glyphicon-plus-sign"></i>
->>>>>>> c4ba2f5fdfcc2794a5209dc0ab5de078826511c6
+
                         </td>
                         <td class="listOffergroupId">{{campaignData.campaignId}}</td>
                         <td>{{campaignData.CampaingDesc}}</td>
@@ -121,35 +150,37 @@
                         <td>{{campaignData.IsClubShopOffer}}</td>
                     </tr>
                     <tr data-ng-switch-when="true">
-                        <td colspan="8">
+                        <td colspan="7">
+                            <div style="margin-left:10px;margin-right:10px;">
                             <ul class="nav nav-tabs tabTitle" role="tablist">
                                 <li role="presentation" class="active"><a showtab="" href="#pages" role="tab" data-toggle="tab">Pages</a></li>
                             </ul>
                             
                             <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="offers">
-                              <table class="table table-hover table-condensed">
-                                <thead class="levelTwo">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Page Id</th>
-                                        <th>Page Name</th>
-                                        <th>Page Desc</th>
-                                        <th>Short Notes</th>
-                                        <th>PageUrl</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr data-ng-repeat="pageData in item.campaigns[$index].pages">
-                                        <td>{{$index+1}}</td>
-                                        <td>{{pageData.PageId}}</td>
-                                        <td>{{pageData.PageName}}</td>
-                                        <td>{{pageData.PageDesc}}</td>
-                                        <td>{{pageData.PageShortNotes}}</td>
-                                        <td>{{pageData.PageUrl}}</td>
-                                    </tr>
-                                </tbody>
-                                </table>
+                                <div role="tabpanel" class="tab-pane active" id="offers">
+                                  <table class="table table-hover table-condensed">
+                                    <thead class="levelTwo">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Page Id</th>
+                                            <th>Page Name</th>
+                                            <th>Page Desc</th>
+                                            <th>Short Notes</th>
+                                            <th>PageUrl</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="pageData in item.campaigns[$index].pages">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{pageData.PageId}}</td>
+                                            <td>{{pageData.PageName}}</td>
+                                            <td>{{pageData.PageDesc}}</td>
+                                            <td>{{pageData.PageShortNotes}}</td>
+                                            <td>{{pageData.PageUrl}}</td>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
                             </div>
                             </div>
                         </td>

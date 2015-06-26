@@ -2,7 +2,6 @@
 
 var app = angular.module('sandvikusaAdminAppsApp');
 
-<<<<<<< HEAD
 app.config(function ($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -61,16 +60,12 @@ app.controller('OfferGroupCtrl', function ($scope) {
 
     };
 
-    $scope.offergrouplist = [
-=======
-app.controller('OfferGroupCtrl', function ($scope,$filter) {
-        $scope.editing = false;
-    
+app.controller('OfferGroupCtrl', function ($scope,$http,$filter) {
+        $scope.editing = false;    
         $scope.models = {
           changeInfo: [],
           searchText: '',
           offergrouplist: [
->>>>>>> c4ba2f5fdfcc2794a5209dc0ab5de078826511c6
             {
             "offergroupId": "12195",
             "offergroupDesc": "Disney Max Choice Frozen $5.99BE DW6- Disney MAX choice 4 books $1.24 each / $2.99 and $5.99 Backend",
@@ -377,10 +372,20 @@ app.controller('OfferGroupCtrl', function ($scope,$filter) {
        //////// third Layer...
     
         
-<<<<<<< HEAD
-});
-=======
+
       //Edit Section and Save Edit..
+        $scope.itemstatus = [
+            {value: 'Y', text: 'Y'},
+            {value: 'N', text: 'N'},
+            {value: 'X', text: 'X'}
+          ];
+        $scope.showStatus = function(offerData) {
+            var selected = [];
+            if(offerData.itemSelected) {
+              selected = $filter('filter')($scope.itemstatus, {value: offerData.itemSelected});
+            }
+            return selected.length ? selected[0].text : 'Not set';
+        };
         $scope.saveUser = function(data, id) {
             angular.extend(data, {id: id});
             return $http.post('/saveUser', data);
@@ -388,4 +393,3 @@ app.controller('OfferGroupCtrl', function ($scope,$filter) {
      //Edit Section and Save Edit..
     
 });
->>>>>>> c4ba2f5fdfcc2794a5209dc0ab5de078826511c6

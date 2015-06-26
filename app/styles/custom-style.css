@@ -53,3 +53,7 @@ box-shadow: 0 6px 4px -6px #666;}
 .bodyContentArea .table > tbody + tbody{border-top: 0;}
 .listSerial{width: 50px;}
 .listOffergroupId{width: 300px;}
+
+/*260615*/
+.smlTxtBxHead{width:100px;}
+.smlTxtBx .editable-wrap .editable-controls>input, .smlTxtBx .editable-wrap .editable-controls>select, .smlTxtBx .editable-wrap .editable-controls>textarea{width:90px !important;}

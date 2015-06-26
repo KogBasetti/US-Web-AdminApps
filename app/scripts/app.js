@@ -17,8 +17,8 @@ var app = angular.module('sandvikusaAdminAppsApp', [
                         'ngTouch',
                         'ngTable',
                         'ui.bootstrap',
-                        'adaptv.adaptStrap'
-                        
+                        'adaptv.adaptStrap',
+                        'xeditable'
                       ]);
 
   app.config(function ($routeProvider) {
