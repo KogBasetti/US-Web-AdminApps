@@ -14,6 +14,7 @@
     
 <link rel="stylesheet" href="styles/ng-table.css"/>
 <link rel="stylesheet" href="styles/custom-app.css"/>
+<link rel="stylesheet" href="styles/custom-adapt-strap.css"/>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +59,6 @@
             	<nav>
                     <ul ng-if="opendiv == 'reports'">
                         <li class="{{getClass('/pages')}}" ng-class="{active: $location.path() == '/pages'}"><a ng-href="#/pages">Page List</a></li>
-                        <li class="{{getClass('/testkendo')}}" ng-class="{active: $location.path() == '/testkendo'}"><a ng-href="#/testkendo">Test Kendo</a></li>
                     </ul>
                     <ul ng-if="opendiv == 'offersetup'">
                         <li class="{{getClass('/orderforms')}}" ng-class="{active: $location.path() == '/orderforms'}"><a ng-href="#/orderforms">Order Forms</a></li>
@@ -112,6 +112,7 @@
     <script src="bower_components/adapt-strap/dist/adapt-strap.min.js"></script>
     <script src="bower_components/adapt-strap/dist/adapt-strap.tpl.min.js"></script>
     <!-- endbower -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="bower_components/adapt-strap/dist/adapt-strap.css" />
     <!-- For Kendo -->
     <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.common-material.min.css" />
@@ -121,6 +122,10 @@
     
     <script src="http://cdn.kendostatic.com/2015.1.429/js/kendo.all.min.js"></script>
     <!-- For Kendo -->
+=======
+    
+
+>>>>>>> c4ba2f5fdfcc2794a5209dc0ab5de078826511c6
     <!-- build:js({.tmp,app}) scripts/scripts.js -->    
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/orderforms.js"></script>
@@ -132,8 +137,6 @@
     <script src="scripts/controllers/offergroup.js"></script>
     <script src="scripts/controllers/insertcampaigns.js"></script>
     <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/testkendo.js"></script>
-    <script src="scripts/controllers/testofferpage.js"></script>
     
     <script src="scripts/app-services/authentication.service.js"></script>
     <script src="scripts/app-services/flash.service.js"></script>

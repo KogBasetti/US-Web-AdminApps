@@ -17,8 +17,8 @@ var app = angular.module('sandvikusaAdminAppsApp', [
                         'ngTouch',
                         'ngTable',
                         'ui.bootstrap',
-                        'kendo.directives',
                         'adaptv.adaptStrap'
+                        
                       ]);
 
   app.config(function ($routeProvider) {
@@ -59,14 +59,6 @@ var app = angular.module('sandvikusaAdminAppsApp', [
         templateUrl: 'views/login.html',
         controller: 'loginCtrl',
         controllerAs:'vm'
-      })
-    .when('/testkendo', {
-        templateUrl: 'views/testkendo.html',
-        controller: 'testkendoCtrl'
-      })
-     .when('/testofferpage', {
-        templateUrl: 'views/testofferpage.html',
-        controller: 'testofferpageCtrl'
       })
     .otherwise({
         redirectTo: '/pages'
