@@ -390,6 +390,5 @@ app.controller('OfferGroupCtrl', function ($scope,$http,$filter) {
             angular.extend(data, {id: id});
             return $http.post('/saveUser', data);
         };
-     //Edit Section and Save Edit..
-    
+     //Edit Section and Save Edit..    
 });
