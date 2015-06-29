@@ -6,60 +6,6 @@ app.config(function ($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
-
-app.controller('OfferGroupCtrl', function ($scope) {
-    
-    $scope.tableRowExpanded = false;
-    $scope.tableRowIndexExpandedCurr = "";
-    $scope.tableRowIndexExpandedPrev = "";
-    $scope.storeIdExpanded = "";
-    
-    $scope.dayDataCollapseFn = function (index) {
-        $scope.dayDataCollapse = [];
-        $scope.campaignDataCollapse = [];
-        for (var i = 0; i < $scope.offergrouplist[index].Offers.length; i += 1) {
-            $scope.dayDataCollapse.push(false);
-        }
-        for (var i = 0; i < $scope.offergrouplist[index].campaigns.length; i += 1) {
-            $scope.campaignDataCollapse.push(false);
-        }
-    };
-    
-    $scope.selectTableRow = function (index, offergroupId) {
-        if (typeof $scope.dayDataCollapse === 'undefined') {
-            $scope.dayDataCollapseFn(index);
-        }
-
-        if ($scope.tableRowExpanded === false && $scope.tableRowIndexExpandedCurr === "" && $scope.storeIdExpanded === "") {
-            $scope.tableRowIndexExpandedPrev = "";
-            $scope.tableRowExpanded = true;
-            $scope.tableRowIndexExpandedCurr = index;
-            $scope.storeIdExpanded = offergroupId;
-            $scope.dayDataCollapse[index] = true;
-            //$(".listSerialicon").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
-            $("#icon_"+offergroupId).removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
-        } 
-        else if ($scope.tableRowExpanded === true) {
-            
-            if ($scope.tableRowIndexExpandedCurr === index && $scope.storeIdExpanded === offergroupId) {
-                $scope.tableRowExpanded = false;
-                $scope.tableRowIndexExpandedCurr = "";
-                $scope.storeIdExpanded = "";
-                $scope.dayDataCollapse[index] = false;
-                $("#icon_"+offergroupId).removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
-            } else {
-                $scope.tableRowIndexExpandedPrev = $scope.tableRowIndexExpandedCurr;
-                $scope.tableRowIndexExpandedCurr = index;
-                $scope.storeIdExpanded = offergroupId;
-                $scope.dayDataCollapse[$scope.tableRowIndexExpandedPrev] = false;
-                $scope.dayDataCollapse[$scope.tableRowIndexExpandedCurr] = true;
-                $(".listSerialicon").removeClass("glyphicon-minus-sign").addClass("glyphicon-plus-sign");
-                $("#icon_"+offergroupId).removeClass("glyphicon-plus-sign").addClass("glyphicon-minus-sign");
-            }
-        }
-
-    };
-
 app.controller('OfferGroupCtrl', function ($scope,$http,$filter) {
         $scope.editing = false;    
         $scope.models = {
