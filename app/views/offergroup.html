@@ -14,7 +14,7 @@
                  enable-column-search="false"
                  column-definition="offerTableColumnDefinition"
                  local-data-source="models.offergrouplist"
-                 page-sizes="[5,10]"
+                 page-sizes="[2,5,10]"
                  page-loader="methods.pageLoader"
                  pagination-btn-group-classes="pagination pagination-sm"
                  table-classes="table table-hover table-condensed table-striped table-bordered offerGroup"
@@ -56,21 +56,14 @@
                     <tr data-ng-repeat="offerData in item.Offers">
                         <td>{{$index+1}}</td>
                         <td>{{offerData.offerId}}</td>
+                        <td class="smlTxtBx">{{offerData.offerDescCode}}</td>
                         <td class="smlTxtBx">
-                            <span editable-text="offerData.offerDescCode" e-name="offerDescCode" e-form="rowform" e-required>
-                                <span ng-if="offerData.offerDescCode=='B'">Base Offer</span>
-                                <span ng-if="offerData.offerDescCode=='O'">One Shot</span>
-                                <span ng-if="offerData.offerDescCode=='U'">Upsell</span>
-                                <span ng-if="offerData.offerDescCode=='P'">Shipping and handling</span>
+                            <span editable-number="offerData.displayOrder" e-name="displayOrder" e-form="rowform" e-step="any" e-required>
+                            {{offerData.displayOrder || 'Enter number'}}
                             </span>
                         </td>
                         <td class="smlTxtBx">
-                            <span editable-text="offerData.displayOrder" e-name="displayOrder" e-form="rowform" e-required>
-                            {{offerData.displayOrder}}
-                            </span>
-                        </td>
-                        <td class="smlTxtBx">
-                            <span editable-text="offerData.itemSelected" e-name="itemSelected" e-form="rowform" e-ng-options="s.value as s.text for s in itemstatus">
+                            <span editable-select="offerData.itemSelected" e-name="itemSelected" e-form="rowform" e-ng-options="s.value as s.text for s in itemstatus">
                                 {{showStatus(offerData)}}
                             </span>
                         </td>
@@ -99,7 +92,7 @@
                             </span>
                         </td>
                         <td class="smlTxtBx">
-                            <span editable-text="offerData.specialText" e-name="specialText" e-form="rowform" e-required>
+                            <span editable-text="offerData.specialText" e-maxlength="30" e-name="specialText" e-form="rowform" e-required>
                                 {{offerData.specialText}} 
                             </span>
                         </td>
@@ -115,6 +108,9 @@
                     </tr>
                 </tbody>
                 </table>
+                
+                
+                
             </div>
             <div role="tabpanel" class="tab-pane" id="campaigns">
               <table class="table table-hover table-condensed">
@@ -126,7 +122,7 @@
                         <th>Campaign Credit Rule</th>
                         <th>Campaign Short Notes</th>
                         <th>Project</th>
-                        <th>Is ClubShopOffer</th>
+                        <th>Design</th>
                     </tr>
                 </thead>
                   <tbody data-ng-repeat="campaignData in item.campaigns | filter : searchText" data-ng-switch on="dayDataCollapse[$index]">
@@ -141,7 +137,10 @@
                         <td>{{campaignData.CampaignCreditRule}}</td>
                         <td>{{campaignData.CampaignShortNotes}}</td>
                         <td>{{campaignData.Project}}</td>
-                        <td>{{campaignData.IsClubShopOffer}}</td>
+                        <td>
+                            <span ng-if="campaignData.IsClubShopOffer=='Y'">Maxchoice</span>
+                            <span ng-if="campaignData.IsClubShopOffer=='N'">Horizontal</span>
+                        </td>
                     </tr>
                     <tr data-ng-switch-when="true">
                         <td colspan="7">
