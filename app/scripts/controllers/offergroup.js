@@ -295,7 +295,7 @@ app.controller('OfferGroupCtrl', function ($scope,$http,$filter) {
           ],
           state: {
             sortKey: 'offergroupId',
-            sortDirection: 'DEC'
+            sortDirection: 'DEC' 
           }
         };
        
