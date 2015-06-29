@@ -322,6 +322,7 @@ app.controller('OfferGroupCtrl', function ($scope,$http,$filter) {
                 visible: false
               }
             ];
+     
     
         //////// third Layer...
         $scope.tableRowExpanded = false;
@@ -369,8 +370,8 @@ app.controller('OfferGroupCtrl', function ($scope,$http,$filter) {
             }
 
         };
-       //////// third Layer...
-    
+       //////// third Layer.....
+     
         
 
       //Edit Section and Save Edit..
