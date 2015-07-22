@@ -69,7 +69,7 @@ app.controller('promocodeCtrl', function ($scope,$http,$location,$modal) {
                     } 
                    else 
                    {
-                        var errMsg="",i=0; 
+                       var errMsg="",i=0; 
                         if($scope.promo_code=="" || $scope.promo_code==undefined)
                             errMsg= ++i +" Promo Code is required. <br/>";
                         if($scope.campaign_id=="" || $scope.campaign_id==undefined)
