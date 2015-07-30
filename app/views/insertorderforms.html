@@ -1,0 +1,83 @@
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+       <div class="row marketing">
+           <span class="fr"><a href="#/orderforms" ng-click="refreshdata()"  class="btn btn-primary  btn-sm">Back</a></span>
+        <h4>Insert Records</h4>
+        
+        <form name="addForm" method="post" action="">
+           <div class="table-responsive">
+            <table class="table insertRecords" cellspacing="1" cellpadding="1">
+               
+                <tr>
+                    <td><b>Additional Info* :</b><br/>
+                    <textarea data-ng-model="AdditionalInfo" data-ck-editor></textarea>
+                        <!--<p><i class="fa fa-exclamation-triangle"></i>Please enter info..</p>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Offer Info* :</b><br/>
+                    <textarea data-ng-model="OfferInfo" data-ck-editor></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Bonus Info :</b><br/>
+                    <textarea data-ng-model="BonusInfo" data-ck-editor></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Bonus Text :</b><br/>
+                    <textarea data-ng-model="BonusText" maxlength="100"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Bonus Rebuttal Info :</b><br/>
+                    <textarea data-ng-model="BonusRebuttalInfo" data-ck-editor></textarea></td>
+                </tr>
+                <tr>
+                    <td><b>Tac Info :</b><br/>
+                    <textarea data-ng-model="TacInfo" data-ck-editor></textarea></td>
+                </tr>
+                <tr>
+                    <td><b>Offer Rebuttal 1 :</b><br/>
+                    <textarea data-ng-model="OfferRebuttal1" data-ck-editor></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Offer Rebuttal 2 :</b><br/>
+                    <textarea data-ng-model="OfferRebuttal2" data-ck-editor></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Short Notes :</b><br/>
+                    <textarea data-ng-model="ShortNotes" maxlength="200"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top:30px ">
+                        <input type="button" value="Add" ng-click="addSubmit()" name="submit" class="btn btn-primary">
+                    </td>
+                </tr>
+            </table>
+               </div>
+        </form>      
+    </div>
+       
+</div>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title" id="myModalLabel">Error</h4>
+      </div>
+      <div class="modal-body">
+        <span id="spanErr"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

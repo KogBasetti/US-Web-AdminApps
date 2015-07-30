@@ -1,0 +1,65 @@
+
+
+<div class="col-md-12 bodyContentArea">
+    <table>
+        <table class="table table-hover table-condensed table-striped">
+                <thead class="levelOne">
+                    <tr>
+                        <th>#</th>
+                        <th>Project</th>
+                        <th>Campaign Id</th>
+                        <th>Campaign Desc</th>
+                        <th>Campaign Credit Rule</th>
+                        <th>Campaign Short Notes</th>
+                    </tr>
+                </thead>
+                <tbody data-ng-repeat="campaign in allcampaignlist" data-ng-switch on="dayDataCollapse[$index]">
+                    <tr class="clickableRow">
+                        <td data-ng-click="selectTableRow($index, campaign.CampaignId)" class="listSerial">
+                            <i id="icon_{{campaign.CampaignId}}" ng-class="iconClasses.expand" class="listSerialicon ng-scope glyphicon glyphicon-plus-sign"></i>
+                        </td>
+                        <td class="listOffergroupId">{{campaign.Project}}</td>
+                        <td class="listOffergroupId">{{campaign.CampaignId}}</td>
+                        <td>{{campaign.CampaingDesc}}</td>
+                        <td>{{campaign.CampaignCreditRule}}</td>
+                        <td>{{campaign.CampaignShortNotes}}</td>
+                    </tr>
+                    <tr data-ng-switch-when="true">
+                        <td colspan="6">
+                          <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="offers">
+                              <table class="table table-hover table-condensed">
+                                <thead class="levelTwo">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Page Id</th>
+                                        <th>Page Name</th>
+                                        <th>Page Desc</th>
+                                        <th>Page Short Notes</th>
+                                        <th>PageUrl</th>
+                                        <th>Page Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="pageData in allcampaignlist[$index].allpagelist">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{pageData.PageId}}</td>
+                                        <td>{{pageData.PageName}}</td>
+                                        <td>{{pageData.PageDesc}}</td>
+                                        <td>{{pageData.PageShortNotes}}</td>
+                                        <td>{{pageData.PageUrl}}</td>
+                                        <td><span ng-if="pageData.IsClubShopOffer=='N'">Horizontal</span>
+                                            <span ng-if="pageData.IsClubShopOffer=='Y'">Maxchoice</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                </table>
+                            </div>
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </table>
+</div>
+

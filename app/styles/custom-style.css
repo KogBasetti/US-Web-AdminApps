@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+@import url(font-awesome.css);
+@import url(common.css);
+@import url(modify.css);
+@import url(bootstrap-datetimepicker.css);
+
+
+*{margin:0; padding:0;}
+
+body{background-color:#fff; overflow-x:hidden; font-family: 'Open Sans', sans-serif !important; font-size:14px; color:#666;}
+
+
+.customWell{margin-bottom:0; border-radius:0; border-bottom:2px solid #fff;}
+.headerSubMenu{background-color:#f5f5f5; padding:0 19px; border-bottom:1px solid #ccc;}
+.headerSubMenu nav ul{*zoom: 1;  margin: 0 auto; padding: 0 2px 0 0;}
+.headerSubMenu nav ul:before,.headerSubMenu nav ul:after{display: table; content: ""; line-height: 0;}
+.headerSubMenu nav ul:after{clear: both;}
+.headerSubMenu nav li{display:inline-block; padding:13px 8px 0 8px; margin: 0 0 0 2px; text-align: center; line-height: 1em;}
+.headerSubMenu nav li a{color: #585858; text-decoration:none;}
+.headerSubMenu nav li a:hover{color: #f00; text-decoration:none;}
+.headerSubMenu nav li:after{font-family: "FontAwesome"; white-space: pre; content: "\A\f0d8"; font-size:25px; vertical-align:bottom;  line-height:3px; color: transparent;}
+.headerSubMenu nav li.active a, .headerSubMenu nav li.active:after{color:#f00;}
+
+
+.footer{background-color:#585858; color:#fff; padding:0; margin-top:20px; left:0; bottom:0; position:fixed; width:100%; z-index: 9999;}
+
+.formBox form{background-color:#EAEAEA; padding:10px; text-align:center; border-bottom:1px solid #ccc; -webkit-border-radius:0 0 10px 10px; -moz-border-radius:0 0 10px 10px; border-radius:0 0 10px 10px; -webkit-box-shadow: 0 6px 4px -6px #666; -moz-box-shadow: 0 6px 4px -6px #666;
+box-shadow: 0 6px 4px -6px #666;}
+.formBox .form-group{margin-right:10px;}
+.formBox .form-group:last-child{margin-right:0;}
+
+.bodyContentArea{margin: 20px 0 40px 0;}
+
+/*======= 16/06/2015 ============ */
+.required{color:#f00;}
+#divPaginate ul{list-style-type: none;margin-left: 0;padding-left: 0;}
+#divPaginate ul li{display: inline;}
+.cke_contents{height: 100px !important;}
+.description{padding:10px;max-with:90%; text-align: justify;}
+.insertrecords textarea{width:100%;}
+.fr{float:right;}
+/*======= 16/06/2015 ============ */
+
+.bodyContentArea{font-size: 12px; font-family: Helvetica Neue,'Helvetica',Arial,sans-serif;}
+.bodyContentArea .tab-content table{margin-bottom: 0;}
+.bodyContentArea .tab-content{border: 1px solid #ccc;}
+
+.clickableRow td{margin-bottom: 5px;}
+.bodyContentArea .table > tbody + tbody{border-top: 0;}
+.listSerial{width: 50px;}
+.listOffergroupId{width: 300px;}
+
+/*260615*/
+.smlTxtBxHead{width:100px;}
+.smlTxtBx .editable-wrap .editable-controls>input, .smlTxtBx .editable-wrap .editable-controls>select, .smlTxtBx .editable-wrap .editable-controls>textarea{width:90px !important;}

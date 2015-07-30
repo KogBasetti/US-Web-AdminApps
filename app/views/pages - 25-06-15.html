@@ -1,0 +1,85 @@
+<div class="col-md-10 col-md-offset-1 formBox">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" ng-model="searchCampaignShortNotes" class="form-control" placeholder="Page Description">
+            </div>
+            <div class="form-group">    
+                <select ng-model="searchProject" class="form-control">
+                      <option value="">Project</option>
+                      <option ng-repeat="project in allProjects" value="{{project.ProjectCode}}">
+                          {{project.ProjectName}}
+                      </option>
+				</select>
+            </div>
+            <div class="form-group">
+                <select ng-model="searchCreditRule" class="form-control">
+                      <option value="">Credit Rule</option>
+                      <option ng-repeat="credit in allCreditrules" value="{{credit.RuleId}}">
+                          {{credit.RuleId}}
+                      </option>
+				</select>
+            </div>
+            <div class="form-group">
+                <select ng-model="searchPageType" class="form-control">
+                    <option value="">Page Type</option>
+                    <option value="N">Horizontal</option>
+                    <option value="Y">Maxchoice</option>
+				</select>
+            </div>
+            <div class="form-group">
+                <select ng-model="searchBEPrice" class="form-control">
+                    <option value="">BE Price</option>
+                    <option value="299">299</option>
+                    <option value="399">399</option>
+                    <option value="499">499</option>
+                    <option value="599">599</option>
+				</select>
+            </div>
+        </form>
+</div>
+
+<div class="clear"></div> 
+<div class="col-md-12"><div ng-show="loading" class="loading"><img src="../images/loading.gif">LOADING...</div></div>
+<div class="clear"></div>
+    
+				
+<div class="col-md-12 bodyContentArea">
+    <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Campaign Id</th>
+						<th>Page Id</th>
+                        <th>Offer Description</th>
+                        <th>Credit Rule</th>
+						<th>Page Name</th>     			
+						<th>Page Desc</th>
+						<th>Short Notes</th>
+						<th>Page Url</th>
+                        <th>Page Type</th>
+                        <th>BE Price</th>
+                        <th style="display:none;">action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="result in results | filter: { CampaignShortNotes: searchCampaignShortNotes,Project: searchProject, CampaignCreditRule: searchCreditRule, IsClubShopOffer: searchPageType }">
+                        <th scope="row">{{$index+1}}</th>
+                        <td>{{result.CampaignId}}</td>
+						<td>{{result.PageId}}</td>
+                        <td>{{result.CampaignShortNotes | limitTo:20}}</td>
+                        <td>{{result.CampaignCreditRule}}</td>
+						<td>{{result.PageName | limitTo:20}}</td>
+						<td>{{result.PageDesc | limitTo:20}}</td> 
+						<td>{{result.PageShortNotes | limitTo:20}}</td>
+                        <td>{{result.PageUrl | limitTo:20}}</td>
+                        <td><span ng-if="result.IsClubShopOffer=='N'">Horizontal</span>
+							<span ng-if="result.IsClubShopOffer=='Y'">Maxchoice</span>
+                        </td>
+                        <td>&nbsp;</td>
+						<td style="display:none;">{{result.Project}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>

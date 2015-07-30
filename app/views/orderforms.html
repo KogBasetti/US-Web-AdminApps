@@ -1,0 +1,117 @@
+<div class="col-md-12 bodyContentArea">
+    <div ng-show="listAll">
+           
+        <div class="clear"></div>
+        <div ng-show="loading" class="loading"><img src="../images/loading.gif">LOADING...</div>
+        <div class="clear"></div>
+    
+        
+        <div class="table-responsive"> 
+            <h5 class="fr"><a href="#/insertorderforms" class="btn btn-primary  btn-sm">ADD NEW</a></h5>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th >Entry Id</th>
+                    <th>Additional Info</th>
+                    <th>Offer Info</th>
+                    <th>Short Notes</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="result in results | pagination: curPage * pageSize | limitTo: pageSize">                    
+                    <td style="padding:10px;">{{result.EntryId}}</td>
+                    <td style="max-width:250px; overflow:hidden;padding:5px;"><div ng-bind-html="result.AdditionalInfo" style="max-height:145px;overflow:hidden;text-align:justify;"></div></td>
+                    <td style="max-width:250px; overflow:hidden;padding:10px;"><div ng-bind-html="result.OfferInfo" style="max-height:145px;overflow:hidden;text-align:justify;"></div></td>
+                    <td style="padding:10px;">{{result.ShortNotes | limitTo: 30 }}</td>
+                    <td style="padding:10px;"><a href="" ng-click="editdata(result.EntryId)" class="btn btn-default">Edit</a></td>         
+                </tr>  
+                </tbody>
+            </table>
+          
+            <div class="pagination-div" ng-show="results.length" id="divPaginate">
+                <ul>
+                    <li><button type="button" class="btn" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">PREV</button></li>
+                    <li><span>{{curPage + 1}} of {{ numberOfPages() }}</span></li>
+                    <li><button type="button"  class="btn" ng-disabled="curPage == numberOfPages()-1" ng-click="curPage = curPage+1">NEXT </button></li>
+                    <li>
+                        <select ng-model="pageSize" ng-change="pageSize" class="btn btn-default">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div ng-show="editAll">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+            
+            <div class="clear"></div>
+        
+            <form name="editForm" method="post">
+                <div class="table-responsive">
+                <span class="fr"><a href="#/orderforms" ng-click="refreshdata()"  class="btn btn-primary  btn-sm">Back</a></span>
+                <table class="table table-bordered">       
+                    <tr>
+                        <td><b>Additional Info* :</b><br/>
+                        <textarea rows="5" cols="60" data-ng-model="AdditionalInfo" data-ck-editor></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Offer Info* :</b><br/>
+                        <textarea rows="5" cols="60" data-ng-model="OfferInfo" data-ck-editor></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Bonus Info :</b><br/>
+                        <textarea rows="5" cols="60" data-ng-model="BonusInfo" data-ck-editor></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Bonus Text :</b><br/>
+                        <textarea rows="5" cols="60" data-ng-model="BonusText" maxlength="100"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Bonus Rebuttal Info :</b><br/>
+                        <textarea rows="5" cols="60" data-ng-model="BonusRebuttalInfo" data-ck-editor></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><b>Tac Info :</b><br/>
+                        <textarea rows="5" cols="60" data-ng-model="TacInfo" data-ck-editor></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><b>Offer Rebuttal 1 :</b><br/>
+                        <textarea rows="5" cols="60" data-ng-model="OfferRebuttal1" data-ck-editor></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Offer Rebuttal 2 :</b><br/>
+                        <textarea rows="5" cols="60" data-ng-model="OfferRebuttal2" data-ck-editor ng-maxlength="2000" name="OfferRebuttal2"></textarea>
+                        <span style="color:red" ng-show="editForm.OfferRebuttal2.$error.maxlength">
+                         It Should Contain Atmost 2000 Characters</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Short Notes :</b><br/>
+                        <textarea rows="5" cols="60" rows="5" cols="60" data-ng-model="ShortNotes" maxlength="200"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:30px ">
+                            <input type="hidden" data-ng-model="EntryId">
+                            <input type="hidden" data-ng-model="token">
+                            <input type="button" value="Update" ng-click="editSubmit()" name="submit" class="btn btn-primary">
+                        </td>
+                    </tr>
+                </table>
+</div>
+            </form>
+        </div>
+    </div>
+    
+</div>

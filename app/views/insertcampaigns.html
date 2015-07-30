@@ -1,0 +1,36 @@
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+       <div class="row marketing">
+           <span class="fr"><a href="#/pages" ng-click="refreshdata()"  class="btn btn-primary  btn-sm">Back</a></span>
+        <h4>Insert Campaigns</h4>
+        
+        <form name="addForm" method="post" action="">
+           <div class="table-responsive">
+            <table class="table insertRecords" cellspacing="1" cellpadding="1">
+               
+                <tr>
+                    <td><b>Credit Rule * :</b><br/>
+                    <input type="text" ng-model="creditrule">
+                        <!--<p><i class="fa fa-exclamation-triangle"></i>Please enter info..</p>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Campaign Desc * :</b><br/>
+					<textarea data-ng-model="campaigndesc" maxlength="200"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Short Notes :</b><br/>
+                    <textarea data-ng-model="ShortNotes" maxlength="200"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top:30px ">
+                        <input type="button" value="Add" ng-click="addSubmit()" name="submit" class="btn btn-primary">
+                    </td>
+                </tr>
+            </table>
+            </div>
+        </form>      
+    </div>
+       
+</div>
