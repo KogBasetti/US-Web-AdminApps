@@ -57,3 +57,6 @@ box-shadow: 0 6px 4px -6px #666;}
 /*260615*/
 .smlTxtBxHead{width:100px;}
 .smlTxtBx .editable-wrap .editable-controls>input, .smlTxtBx .editable-wrap .editable-controls>select, .smlTxtBx .editable-wrap .editable-controls>textarea{width:90px !important;}
+span.hand { cursor: pointer; cursor: hand; }
+.offerEditBtn{padding: 0 10px !important; font-size: 11px; border-radius: 2px; cursor:pointer;}
+

@@ -22,6 +22,10 @@
 
     <div>
         <!-- START TABLE -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6a8419cafb1b65c6ab391cbde4854b61f735479f
 <div class="input-group" style="width:20%; padding-bottom:1px;">
     <input type="text" ng-model="models.searchText" class="form-control" placeholder="Search here" >
     <span class="input-group-addon">
@@ -69,7 +73,8 @@
                               </span>
                             </a>
                         </th>
-                        <th>Offer Desc Code
+
+                        <th>Description Code
                             <a href="#offergroup" ng-click="orderByField='offerDescCode'; reverseSort = !reverseSort">
                               <i ng-hide="orderByField == 'offerDescCode'" class="glyphicon glyphicon-resize-vertical"></i>
                               <span ng-show="orderByField == 'offerDescCode'">
@@ -87,9 +92,10 @@
                               </span>
                             </a>
                         </th>
-                        <th>Is Item Selected</th>
+
+                        <th>Is Selected</th>
                         <th>Is Bonus Bundled</th>
-                        <th>Display In Cart</th>
+                        <th>Is In Cart</th>
                         <th>Is Base Offer</th>
                         <th class="smlTxtBxHead">Is Use</th>
                         <th class="smlTxtBxHead">Special Text</th>
@@ -108,31 +114,28 @@
                         </td>
                         <td class="smlTxtBx">
                             <span editable-select="offerData.itemSelected" e-name="itemSelected" e-form="rowform" e-ng-options="s.value as s.text for s in itemstatus">
-                                {{showStatus(offerData)}}
+                                {{showStatus(offerData.itemSelected,1)}}
                             </span>
                         </td>
                         <td class="smlTxtBx">
-                            <span editable-text="offerData.isBonusBundled" e-name="isBonusBundled" e-form="rowform" e-required>
-                                <span ng-if="offerData.isBonusBundled=='Y'">Yes</span>
-                                <span ng-if="offerData.isBonusBundled=='N'">No</span>
+                            <span editable-select="offerData.isBonusBundled" e-name="isBonusBundled" e-form="rowform" e-ng-options="s.value as s.text for s in allstatus">
+                                {{showStatus(offerData.isBonusBundled,2)}}
                             </span>
                         </td>
                         <td class="smlTxtBx">
-                            <span editable-text="offerData.displayInCart" e-name="displayInCart" e-form="rowform" e-required>
-                                <span ng-if="offerData.displayInCart=='Y'">Yes</span>
-                                <span ng-if="offerData.displayInCart=='N'">No</span>
+                            <span editable-select="offerData.displayInCart" e-name="displayInCart" e-form="rowform" e-ng-options="s.value as s.text for s in allstatus" e-required>
+                                {{showStatus(offerData.displayInCart,2)}}
                             </span>
                         </td>
                         <td class="smlTxtBx">
-                            <span editable-text="offerData.isBaseOffer" e-name="isBaseOffer" e-form="rowform" e-required>
-                                <span ng-if="offerData.isBaseOffer=='Y'">Yes</span>
-                                <span ng-if="offerData.isBaseOffer=='N'">No</span>
+                            <span editable-select="offerData.isBaseOffer" e-name="isBaseOffer" e-form="rowform" e-ng-options="s.value as s.text for s in allstatus" e-required>
+                                 {{showStatus(offerData.isBaseOffer,2)}}
                             </span>
                         </td>
                         <td class="smlTxtBx">
-                            <span editable-text="offerData.inUse" e-name="inUse" e-form="rowform" e-required>
-                                <span ng-if="offerData.inUse=='Y'">Yes</span>
-                                <span ng-if="offerData.inUse=='N'">No</span>
+                            <span editable-select="offerData.inUse" e-name="inUse" e-form="rowform" e-ng-options="s.value as s.text for s in allstatus" e-required>
+                                {{showStatus(offerData.inUse,2)}}
+
                             </span>
                         </td>
                         <td class="smlTxtBx">
@@ -142,11 +145,12 @@
                         </td>
                         <td>
                             <form editable-form name="rowform" onbeforesave="saveUser($data, offerData.offerId)" ng-show="rowform.$visible" class="form-buttons form-inline">
-                              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-sm">Save</button>
-                              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-sm">cancel</button>
+
+                              <span ng-disabled="rowform.$waiting" class="btn btn-primary offerEditBtn">Save</span> 
+                              <span ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-primary offerEditBtn">cancel</span>
                             </form> 
                             <div class="buttons" ng-show="!rowform.$visible">
-                              <button class="btn btn-primary" ng-click="rowform.$show()">Edit</button>
+                              <span ng-click="rowform.$show()" class="btn btn-primary offerEditBtn">Edit</span>
                             </div> 
                         </td>
                     </tr>
@@ -159,9 +163,10 @@
                     <tr>
                         <th>#</th>
                         <th>Campaign Id</th>
-                        <th>Campaign Desc</th>
-                        <th>Campaign Credit Rule</th>
-                        <th>Campaign Short Notes</th>
+                        <th>Description</th>
+                        <th>Credit Rule</th>
+                        <th>Short Notes</th>
+
                         <th>Project</th>
                         <th>Design</th>
                         <th>Action</th>
@@ -183,12 +188,16 @@
                             <span ng-if="campaignData.IsClubShopOffer=='Y'">Maxchoice</span>
                             <span ng-if="campaignData.IsClubShopOffer=='N'">Horizontal</span>
                         </td>
-                        <td><button class="btn btn-primary" ng-click="editCampaignData(campaignData,'View')">View</button>
-                            <button class="btn btn-primary" ng-click="editCampaignData(campaignData,'Edit')">Edit</button></td>
+
+                        <td>
+							<span class="btn btn-primary offerEditBtn" ng-click="editCampaignData(campaignData,'View')">View</span>
+							<span class="btn btn-primary offerEditBtn" ng-click="editCampaignData(campaignData,'Edit')">Edit</span>
+						</td>
                     </tr>
                     <tr data-ng-switch-when="true">
                         <td colspan="8">
-                            <div style="margin-left:10px;margin-right:10px;">
+                            <div>
+
                             <ul class="nav nav-tabs tabTitle" role="tablist">
                                 <li role="presentation" class="active"><a showtab="" href="#pages" role="tab" data-toggle="tab">Pages</a></li>
                             </ul>
@@ -200,10 +209,13 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Page Id</th>
-                                            <th>Page Name</th>
-                                            <th>Page Desc</th>
+
+                                            <th>Name</th>
+                                            <th>Description</th>
                                             <th>Short Notes</th>
-                                            <th>PageUrl</th>
+                                            <th>Page Url</th>
+											<th>Action</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -213,7 +225,10 @@
                                             <td>{{pageData.PageName}}</td>
                                             <td>{{pageData.PageDesc}}</td>
                                             <td>{{pageData.PageShortNotes}}</td>
-                                            <td>{{pageData.PageUrl}}</td>
+
+                                            <td><a href="{{pageData.PageUrl}}" target="_blank">Click here</a></td>
+											<td><span class="btn btn-primary offerEditBtn">Edit</span></td>
+
                                         </tr>
                                     </tbody>
                                     </table>
@@ -235,7 +250,9 @@
 <modal title="Campaigns" visible="showModal">
     <form name="campaignEditform" role="form" ng-submit="updateCampaignData()">
       <div class="form-group">
-            <label for="CampaingDesc">Campaign Description</label>
+
+            <label for="CampaingDesc">Description</label>
+
             <input type="text" class="form-control" placeholder="Enter Campaing Desc" ng-model="CampaingDesc" ng-readonly="actionVal" />
       </div>
       <div class="form-group">
@@ -269,3 +286,27 @@
 </modal>
 
 
+<<<<<<< HEAD
+=======
+
+<style>
+.offerGroup thead tr:first-child {
+    background-color: #3E7AAE;
+    color: #fff;
+    border:none;
+}
+.offerGroup thead tr:last-child {
+    background-color: #f9f9f9;
+    color: #fff;
+    border:none;
+}
+.offerGroup tr:first-child td:first-child,
+.offerGroup tr:first-child th:first-child{border-radius: 6px 0 0 0;}
+.offerGroup tr:first-child td:last-child,
+.offerGroup tr:first-child th:last-child{border-radius: 0 6px 0 0;}
+ .offerGroup tbody > tr {
+    border-bottom: 1px solid #ddd;
+ }
+</style>
+
+>>>>>>> 6a8419cafb1b65c6ab391cbde4854b61f735479f
